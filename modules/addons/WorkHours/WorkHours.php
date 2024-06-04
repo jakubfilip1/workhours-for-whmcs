@@ -9,13 +9,8 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . "vendor" . DIRECTORY_SEPARATOR . "a
 
 function WorkHours_config()
 {
-    return [
-        'name' => 'WorkHours',
-        'description' => 'Module for monitoring employee working time.',
-        'author' => 'Jakub Filip',
-        'language' => 'english',
-        'version' => '1.0.0'
-    ];
+    $configAction = new \WorkHours\Actions\Config();
+    return $configAction->execute();
 }
 
 function WorkHours_activate()
