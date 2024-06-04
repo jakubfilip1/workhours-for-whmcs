@@ -3,6 +3,9 @@
 namespace WorkHours\Actions;
 
 use WorkHours\Actions\ActionInterface;
+use WorkHours\Migrations\CreateTable\WorkSchedule;
+use WorkHours\Migrations\MigrationDirection;
+use WorkHours\Migrations\MigrationManager;
 
 class Activate implements ActionInterface
 {
@@ -10,6 +13,10 @@ class Activate implements ActionInterface
     {
         try
         {
+            $migrationManager = new MigrationManager();
+            $migrationManager->addMigration(new WorkSchedule(), MigrationDirection::UP);
+            $migrationManager->runMigrations();
+
             return [
                 'status' => 'success'
             ];
