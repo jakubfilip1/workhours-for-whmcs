@@ -12,7 +12,14 @@ class WorkSchedule extends AbstractModel
 
     protected $fillable = ['admin_id', 'work_session_id', 'task_id', 'start_time', 'end_time', 'type'];
 
-    public static function startTask(int $adminId, int $workSessionId, ?int $taskId, Carbon $now, $type) :self
+    public static function isEmployeeCurrentlyAtBreak(int $adminId) :bool
+    {
+        $lastSession = self::where('admin_id', '=', $adminId)->where('type', '=', 'break')->orderBy('created_at', 'desc')->first();
+
+        return !is_null($lastSession) && is_null($lastSession->end_time);
+    }
+
+    public static function startTask(int $adminId, int $workSessionId, ?int $taskId, Carbon $now, string $type) :self
     {
         return self::create([
             'admin_id' => $adminId,
@@ -23,10 +30,9 @@ class WorkSchedule extends AbstractModel
         ]);
     }
 
-    public static function endLastTask(int $adminId, int $workSessionId, Carbon $now) :?self
+    public static function endLastTask(int $adminId, Carbon $now) :?self
     {
         $workSchedule = self::where('admin_id', '=', $adminId)
-            ->where('work_session_id', '=', $workSessionId)
             ->whereNull('end_time')
             ->first();
 
@@ -39,5 +45,19 @@ class WorkSchedule extends AbstractModel
         $workSchedule->save();
 
         return $workSchedule;
+    }
+
+    public static function startBreak(int $adminId, Carbon $now) :self
+    {
+        $lastTask = self::endLastTask($adminId, $now);
+
+        return self::startTask($adminId, $lastTask->work_session_id, null, $now, 'break');
+    }
+
+    public static function endBreak(int $adminId, Carbon $now) :self
+    {
+        $lastTask = self::endLastTask($adminId, $now);
+
+        return self::startTask($adminId, $lastTask->work_session_id, null, $now, 'work');
     }
 }

@@ -23,6 +23,20 @@ class WorkService
 
         $workSession = WorkSessions::endWork($adminId, $now);
 
-        $workSchedule = WorkSchedule::endLastTask($adminId, $workSession->id, $now);
+        $workSchedule = WorkSchedule::endLastTask($adminId, $now);
+    }
+
+    public function startBreak(int $adminId)
+    {
+        $now = Carbon::now();
+
+        WorkSchedule::startBreak($adminId, $now);
+    }
+
+    public function endBreak(int $adminId)
+    {
+        $now = Carbon::now();
+
+        WorkSchedule::endBreak($adminId, $now);
     }
 }
