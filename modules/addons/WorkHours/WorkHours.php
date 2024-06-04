@@ -27,6 +27,6 @@ function WorkHours_deactivate()
 
 function WorkHours_output($params)
 {
-    $outputAction = new \WorkHours\Actions\Output();
+    $outputAction = new \WorkHours\Actions\Output($params);
     $outputAction->execute();
 }

@@ -2,7 +2,9 @@
 
 namespace WorkHours\Actions;
 
-class Activate
+use Modules\Addons\WorkHours\Actions\ActionInterface;
+
+class Activate implements ActionInterface
 {
     public function execute()
     {

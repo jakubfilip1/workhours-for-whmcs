@@ -2,7 +2,9 @@
 
 namespace WorkHours\Actions;
 
-class Config
+use Modules\Addons\WorkHours\Actions\ActionInterface;
+
+class Config implements ActionInterface
 {
     protected $name = 'WorkHours';
     protected $description = 'Module for monitoring employee working time.';
