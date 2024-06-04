@@ -14,6 +14,7 @@ class WorkSchedule implements MigrationInterface
                 $table->increments('id');
                 $table->integer('admin_id')->unsigned();
                 $table->integer('work_session_id')->unsigned();
+                $table->integer('task_id')->unsigned()->nullable();
                 $table->datetime('start_time');
                 $table->datetime('end_time')->nullable();
                 $table->enum('type', ['work', 'break'])->default('work');
