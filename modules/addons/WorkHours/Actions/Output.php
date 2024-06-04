@@ -6,14 +6,14 @@ use WorkHours\Actions\ActionInterface;
 
 class Output implements ActionInterface
 {
-    protected $params;
+    protected array $params;
 
     public function __construct($params)
     {
         $this->params = $params;
     }
 
-    public function execute()
+    public function execute() :void
     {
         echo "";
     }

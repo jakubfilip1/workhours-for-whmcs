@@ -6,7 +6,7 @@ use WorkHours\Actions\ActionInterface;
 
 class Activate implements ActionInterface
 {
-    public function execute()
+    public function execute() :array
     {
         try
         {

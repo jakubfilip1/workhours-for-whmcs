@@ -6,13 +6,13 @@ use WorkHours\Actions\ActionInterface;
 
 class Config implements ActionInterface
 {
-    protected $name = 'WorkHours';
-    protected $description = 'Module for monitoring employee working time.';
-    protected $author = "Jakub Filip";
-    protected $language = "english";
-    protected $version = "1.0.0";
+    protected string $name = 'WorkHours';
+    protected string $description = 'Module for monitoring employee working time.';
+    protected string $author = "Jakub Filip";
+    protected string $language = "english";
+    protected string $version = "1.0.0";
 
-    public function execute()
+    public function execute() :array
     {
         return [
             'name' => $this->name,
