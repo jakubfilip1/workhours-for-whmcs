@@ -15,17 +15,8 @@ function WorkHours_config()
 
 function WorkHours_activate()
 {
-    try
-    {
-        return [
-            'status' => 'success'
-        ];
-    } catch (\Exception $e) {
-        return [
-            'status' => "error",
-            'description' => $e->getMessage()
-        ];
-    }
+    $activateAction = new \WorkHours\Actions\Activate();
+    return $activateAction->execute();
 }
 
 function WorkHours_deactivate()
