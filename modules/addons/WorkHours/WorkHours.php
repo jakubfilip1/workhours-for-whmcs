@@ -21,17 +21,8 @@ function WorkHours_activate()
 
 function WorkHours_deactivate()
 {
-    try
-    {
-        return [
-            'status' => 'success'
-        ];
-    } catch (\Exception $e) {
-        return [
-            "status" => "error",
-            "description" => $e->getMessage()
-        ];
-    }
+    $deactivateAction = new \WorkHours\Actions\Deactivate();
+    return $deactivateAction->execute();
 }
 
 function WorkHours_output($params)
