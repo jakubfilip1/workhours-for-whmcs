@@ -3,6 +3,7 @@
 namespace WorkHours\Controllers;
 
 use WorkHours\Models\WorkSessions;
+use WorkHours\Services\WorkService;
 
 class IndexController extends BaseController
 {
@@ -29,14 +30,16 @@ class IndexController extends BaseController
 
     public function startWork() :void
     {
-        WorkSessions::startWork($this->adminId);
+        $workService = new WorkService();
+        $workService->startWork($this->adminId);
 
         $this->route('IndexController', 'index');
     }
 
     public function endWork() :void
     {
-        WorkSessions::endWork($this->adminId);
+        $workService = new WorkService();
+        $workService->stopWork($this->adminId);
 
         $this->route('IndexController', 'index');
     }

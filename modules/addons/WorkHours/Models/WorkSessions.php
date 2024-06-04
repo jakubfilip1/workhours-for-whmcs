@@ -19,15 +19,15 @@ class WorkSessions extends AbstractModel
         return !is_null($lastSession) && is_null($lastSession->end_time);
     }
 
-    public static function startWork(int $adminId) :void
+    public static function startWork(int $adminId, Carbon $now) :self
     {
-        self::create([
+        return self::create([
             'admin_id' => $adminId,
-            'start_time' => Carbon::now()
+            'start_time' => $now
         ]);
     }
 
-    public static function endWork(int $adminId) :void
+    public static function endWork(int $adminId, Carbon $now) :?self
     {
         $workSession = self::where('admin_id', '=', $adminId)
             ->whereNull('end_time')
@@ -35,10 +35,12 @@ class WorkSessions extends AbstractModel
 
         if(!$workSession)
         {
-            return;
+            return null;
         }
 
-        $workSession->end_time = Carbon::now();
+        $workSession->end_time = $now;
         $workSession->save();
+
+        return $workSession;
     }
 }
