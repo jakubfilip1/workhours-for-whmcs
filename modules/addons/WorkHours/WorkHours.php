@@ -5,6 +5,8 @@ if (!defined("WHMCS"))
     die("This file cannot be accessed directly");
 }
 
+require_once __DIR__ . DIRECTORY_SEPARATOR . "vendor" . DIRECTORY_SEPARATOR . "autoload.php";
+
 function WorkHours_config()
 {
     return [
