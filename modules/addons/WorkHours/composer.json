@@ -1,0 +1,15 @@
+{
+    "name": "jakub-filip/work-hours",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Jakub Filip"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "WorkHours\\": "./"
+        }
+    },
+    "require": {}
+}
