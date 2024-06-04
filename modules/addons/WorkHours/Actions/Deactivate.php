@@ -3,6 +3,7 @@
 namespace WorkHours\Actions;
 
 use WorkHours\Migrations\CreateTable\WorkSchedule;
+use WorkHours\Migrations\CreateTable\WorkSessions;
 use WorkHours\Migrations\MigrationDirection;
 use WorkHours\Migrations\MigrationManager;
 
@@ -13,6 +14,7 @@ class Deactivate implements ActionInterface
         try
         {
             $migrationManager = new MigrationManager();
+            $migrationManager->addMigration(new WorkSessions(), MigrationDirection::DOWN);
             $migrationManager->addMigration(new WorkSchedule(), MigrationDirection::DOWN);
             $migrationManager->runMigrations();
 
