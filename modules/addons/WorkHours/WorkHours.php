@@ -7,6 +7,8 @@ if (!defined("WHMCS"))
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . "vendor" . DIRECTORY_SEPARATOR . "autoload.php";
 
+use WHMCS\Session;
+
 function WorkHours_config()
 {
     $configAction = new \WorkHours\Actions\Config();
@@ -27,6 +29,9 @@ function WorkHours_deactivate()
 
 function WorkHours_output($params)
 {
-    $outputAction = new \WorkHours\Actions\Output($params);
+    $smarty = new \Smarty();
+    $adminId = Session::get('adminid');
+
+    $outputAction = new \WorkHours\Actions\Output($smarty, $params, $adminId);
     $outputAction->execute();
 }
