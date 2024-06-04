@@ -2,7 +2,6 @@
 
 namespace WorkHours\Actions;
 
-use WorkHours\Actions\ActionInterface;
 use WorkHours\Migrations\CreateTable\WorkSchedule;
 use WorkHours\Migrations\MigrationDirection;
 use WorkHours\Migrations\MigrationManager;

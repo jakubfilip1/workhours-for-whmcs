@@ -2,8 +2,6 @@
 
 namespace WorkHours\Actions;
 
-use WorkHours\Actions\ActionInterface;
-
 class Config implements ActionInterface
 {
     protected string $name = 'Work Hours';

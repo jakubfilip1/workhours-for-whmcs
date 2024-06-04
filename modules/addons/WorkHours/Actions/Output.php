@@ -2,8 +2,6 @@
 
 namespace WorkHours\Actions;
 
-use WorkHours\Actions\ActionInterface;
-
 class Output implements ActionInterface
 {
     protected array $params;
