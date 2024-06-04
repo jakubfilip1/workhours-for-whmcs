@@ -2,7 +2,9 @@
 
 namespace WorkHours\Controllers;
 
-class IndexController
+use WorkHours\Models\WorkSessions;
+
+class IndexController extends BaseController
 {
     protected array $params;
     protected int $adminId;
@@ -13,11 +15,29 @@ class IndexController
         $this->adminId = $adminId;
     }
 
-    public function index()
+    public function index() :array
     {
+        $isEmployeeCurrentlyAtWork = WorkSessions::isEmployeeCurrentlyAtWork($this->adminId);
+
         return [
             'template' => 'index',
-            'templateParams' => []
+            'templateParams' => [
+                'isEmployeeCurrentlyAtWork' => $isEmployeeCurrentlyAtWork
+            ]
         ];
+    }
+
+    public function startWork() :void
+    {
+        WorkSessions::startWork($this->adminId);
+
+        $this->route('IndexController', 'index');
+    }
+
+    public function endWork() :void
+    {
+        WorkSessions::endWork($this->adminId);
+
+        $this->route('IndexController', 'index');
     }
 }
