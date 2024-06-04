@@ -2,7 +2,7 @@
 
 namespace WorkHours\Actions;
 
-use Modules\Addons\WorkHours\Actions\ActionInterface;
+use WorkHours\Actions\ActionInterface;
 
 class Deactivate implements ActionInterface
 {

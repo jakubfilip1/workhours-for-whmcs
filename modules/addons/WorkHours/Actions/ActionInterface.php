@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Addons\WorkHours\Actions;
+namespace WorkHours\Actions;
 
 interface ActionInterface
 {
