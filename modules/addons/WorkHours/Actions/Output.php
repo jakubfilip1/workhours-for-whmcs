@@ -2,6 +2,8 @@
 
 namespace WorkHours\Actions;
 
+use WHMCS\Session;
+
 class Output implements ActionInterface
 {
     protected array $params;
