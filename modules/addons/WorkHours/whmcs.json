@@ -1,0 +1,18 @@
+{
+    "schema": "1.0.0",
+    "type": "whmcs-addons",
+    "name": "workhours",
+    "category": "addon",
+    "description": {
+        "name": "WorkHours",
+        "tagline": "Module for monitoring employee working time."
+    },
+    "logo": {
+        "filename": "logo.png"
+    },
+    "authors": [
+        {
+            "name": "Jakub Filip"
+        }
+    ]
+}
