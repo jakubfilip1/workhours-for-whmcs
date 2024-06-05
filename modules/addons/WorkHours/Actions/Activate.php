@@ -2,6 +2,7 @@
 
 namespace WorkHours\Actions;
 
+use WorkHours\Migrations\CreateTable\Tasks;
 use WorkHours\Migrations\CreateTable\WorkSchedule;
 use WorkHours\Migrations\CreateTable\WorkSessions;
 use WorkHours\Migrations\MigrationDirection;
@@ -15,6 +16,7 @@ class Activate implements ActionInterface
         {
             $migrationManager = new MigrationManager();
             $migrationManager->addMigration(new WorkSessions(), MigrationDirection::UP);
+            $migrationManager->addMigration(new Tasks(), MigrationDirection::UP);
             $migrationManager->addMigration(new WorkSchedule(), MigrationDirection::UP);
             $migrationManager->runMigrations();
 
