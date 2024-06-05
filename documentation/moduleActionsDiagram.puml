@@ -1,0 +1,41 @@
+@startuml
+
+!theme plain
+left to right direction
+skinparam linetype ortho
+
+class ActionInterface {
+   execute():
+}
+class Activate {
+   execute():
+}
+class Config {
+   author:
+   name:
+   description:
+   language:
+   version:
+   execute():
+}
+class Deactivate {
+   execute():
+}
+class Output {
+   __construct(smarty, params, adminId):
+   adminId:
+   smarty:
+   params:
+   execute():
+}
+class Sidebar {
+   execute():
+}
+
+Activate         -[#008200,dashed]-^  ActionInterface
+Config           -[#008200,dashed]-^  ActionInterface
+Deactivate       -[#008200,dashed]-^  ActionInterface
+Output           -[#008200,dashed]-^  ActionInterface
+Sidebar          -[#008200,dashed]-^  ActionInterface
+
+@enduml

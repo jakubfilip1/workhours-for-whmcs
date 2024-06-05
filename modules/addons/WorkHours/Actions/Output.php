@@ -6,12 +6,29 @@ use WorkHours\Controllers\IndexController;
 use WHMCS\Database\Capsule;
 use WorkHours\Models\Setting;
 
+/**
+ *
+ */
 class Output implements ActionInterface
 {
+    /**
+     * @var \Smarty
+     */
     protected \Smarty $smarty;
+    /**
+     * @var array
+     */
     protected array $params;
+    /**
+     * @var int
+     */
     protected int $adminId;
 
+    /**
+     * @param \Smarty $smarty
+     * @param array $params
+     * @param int $adminId
+     */
     public function __construct(\Smarty $smarty, array $params, int $adminId)
     {
         $this->smarty = $smarty;
@@ -19,6 +36,9 @@ class Output implements ActionInterface
         $this->adminId = $adminId;
     }
 
+    /**
+     * @return void
+     */
     public function execute() :void
     {
         $controller = 'WorkHours\\Controllers\\' . $_GET['controller'];

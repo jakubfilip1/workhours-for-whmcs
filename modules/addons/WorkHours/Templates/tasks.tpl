@@ -19,11 +19,29 @@
             <tr>
                 <th>Name</th>
                 <th>Description</th>
+                <th width="150">Actions</th>
             </tr>
             {foreach $WorkHoursParams['tasks'] as $task}
                 <tr>
                     <td>{$task->name}</td>
                     <td>{$task->description}</td>
+                    <td>
+                        {if $WorkHoursParams['currentRunTask']->task_id == $task->id}
+                            <div style="display: inline-block">
+                                <form method="POST" action="addonmodules.php?module=WorkHours&controller=TasksController&action=stopTask">
+                                    <input type="hidden" name="taskId" value="{$task->id}">
+                                    <button type="submit" class="btn btn-danger">Stop</button>
+                                </form>
+                            </div>
+                        {else}
+                            <div style="display: inline-block">
+                                <form method="POST" action="addonmodules.php?module=WorkHours&controller=TasksController&action=runTask">
+                                    <input type="hidden" name="taskId" value="{$task->id}">
+                                    <button type="submit" class="btn btn-success">Run</button>
+                                </form>
+                            </div>
+                        {/if}
+                    </td>
                 </tr>
             {/foreach}
         </tbody>

@@ -5,13 +5,29 @@ namespace WorkHours\Models;
 use WHMCS\Model\AbstractModel;
 use Carbon\Carbon;
 
+/**
+ *
+ */
 class WorkSchedule extends AbstractModel
 {
+    /**
+     * @var string
+     */
     protected $table = "WorkHours_WorkSchedule";
+    /**
+     * @var string
+     */
     protected $primaryKey = "id";
 
+    /**
+     * @var string[]
+     */
     protected $fillable = ['admin_id', 'work_session_id', 'task_id', 'start_time', 'end_time', 'type'];
 
+    /**
+     * @param int $adminId
+     * @return bool
+     */
     public static function isEmployeeCurrentlyAtBreak(int $adminId) :bool
     {
         $lastSession = self::where('admin_id', '=', $adminId)->where('type', '=', 'break')->orderBy('created_at', 'desc')->first();
@@ -19,6 +35,14 @@ class WorkSchedule extends AbstractModel
         return !is_null($lastSession) && is_null($lastSession->end_time);
     }
 
+    /**
+     * @param int $adminId
+     * @param int $workSessionId
+     * @param int|null $taskId
+     * @param Carbon $now
+     * @param string $type
+     * @return self
+     */
     public static function startTask(int $adminId, int $workSessionId, ?int $taskId, Carbon $now, string $type) :self
     {
         return self::create([
@@ -30,6 +54,11 @@ class WorkSchedule extends AbstractModel
         ]);
     }
 
+    /**
+     * @param int $adminId
+     * @param Carbon $now
+     * @return self|null
+     */
     public static function endLastTask(int $adminId, Carbon $now) :?self
     {
         $workSchedule = self::where('admin_id', '=', $adminId)
@@ -47,6 +76,11 @@ class WorkSchedule extends AbstractModel
         return $workSchedule;
     }
 
+    /**
+     * @param int $adminId
+     * @param Carbon $now
+     * @return self
+     */
     public static function startBreak(int $adminId, Carbon $now) :self
     {
         $lastTask = self::endLastTask($adminId, $now);
@@ -54,6 +88,11 @@ class WorkSchedule extends AbstractModel
         return self::startTask($adminId, $lastTask->work_session_id, null, $now, 'break');
     }
 
+    /**
+     * @param int $adminId
+     * @param Carbon $now
+     * @return self
+     */
     public static function endBreak(int $adminId, Carbon $now) :self
     {
         $lastTask = self::endLastTask($adminId, $now);

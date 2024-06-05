@@ -8,8 +8,14 @@ use WorkHours\Migrations\CreateTable\WorkSessions;
 use WorkHours\Migrations\MigrationDirection;
 use WorkHours\Migrations\MigrationManager;
 
+/**
+ *
+ */
 class Deactivate implements ActionInterface
 {
+    /**
+     * @return array|string[]
+     */
     public function execute() :array
     {
         try

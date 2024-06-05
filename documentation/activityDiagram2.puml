@@ -1,0 +1,17 @@
+@startuml
+
+start
+
+:Admin klika "Start Work";
+:Tworzenie nowej WorkSession;
+:Tworzenie nowej WorkSchedule bez zadania;
+:Admin wybiera zadanie;
+:Zamknięcie ostatniej WorkSchedule;
+:Rozpoczęcie nowej WorkSchedule;
+:Admin klika "End Work";
+:Zamknięcie ostatniej WorkSchedule;
+:Zamknięcie ostatniej WorkSession;
+
+stop
+
+@enduml

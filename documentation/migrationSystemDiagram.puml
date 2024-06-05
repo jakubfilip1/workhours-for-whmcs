@@ -1,0 +1,37 @@
+@startuml
+
+!theme plain
+left to right direction
+skinparam linetype ortho
+
+class MigrationDirection {
+   DOWN:
+   UP:
+}
+class MigrationInterface {
+   up():
+   down():
+}
+class MigrationManager {
+   migrations:
+   runMigrations():
+   addMigration(migration, direction):
+}
+class Tasks {
+   up():
+   down():
+}
+class WorkSchedule {
+   up():
+   down():
+}
+class WorkSessions {
+   up():
+   down():
+}
+
+Tasks               -[#008200,dashed]-^  MigrationInterface
+WorkSchedule        -[#008200,dashed]-^  MigrationInterface
+WorkSessions        -[#008200,dashed]-^  MigrationInterface
+
+@enduml

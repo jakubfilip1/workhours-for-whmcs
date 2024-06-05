@@ -1,0 +1,34 @@
+@startuml
+
+!theme plain
+left to right direction
+skinparam linetype ortho
+
+class Setting extends \WHMCS\Config\Setting {
+   getSystemURL():
+}
+class Tasks extends \WHMCS\Model\AbstractModel {
+   fillable:
+   table:
+   primaryKey:
+}
+class WorkSchedule extends \WHMCS\Model\AbstractModel {
+   fillable:
+   table:
+   primaryKey:
+   endBreak(adminId, now):
+   isEmployeeCurrentlyAtBreak(adminId):
+   endLastTask(adminId, now):
+   startBreak(adminId, now):
+   startTask(adminId, workSessionId, taskId, now, type):
+}
+class WorkSessions extends \WHMCS\Model\AbstractModel {
+   fillable:
+   table:
+   primaryKey:
+   startWork(adminId, now):
+   endWork(adminId, now):
+   isEmployeeCurrentlyAtWork(adminId):
+}
+
+@enduml

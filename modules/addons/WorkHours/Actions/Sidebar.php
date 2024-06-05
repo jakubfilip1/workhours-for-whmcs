@@ -2,8 +2,14 @@
 
 namespace WorkHours\Actions;
 
+/**
+ *
+ */
 class Sidebar implements ActionInterface
 {
+    /**
+     * @return string
+     */
     public function execute() :string
     {
         return <<<HTML

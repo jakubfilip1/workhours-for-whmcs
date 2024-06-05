@@ -6,17 +6,33 @@ use WorkHours\Models\WorkSchedule;
 use WorkHours\Models\WorkSessions;
 use WorkHours\Services\WorkService;
 
+/**
+ *
+ */
 class IndexController extends BaseController
 {
+    /**
+     * @var array
+     */
     protected array $params;
+    /**
+     * @var int
+     */
     protected int $adminId;
 
+    /**
+     * @param array $params
+     * @param int $adminId
+     */
     public function __construct(array $params, int $adminId)
     {
         $this->params = $params;
         $this->adminId = $adminId;
     }
 
+    /**
+     * @return array
+     */
     public function index() :array
     {
         $isEmployeeCurrentlyAtWork = WorkSessions::isEmployeeCurrentlyAtWork($this->adminId);
@@ -31,6 +47,9 @@ class IndexController extends BaseController
         ];
     }
 
+    /**
+     * @return void
+     */
     public function startWork() :void
     {
         $workService = new WorkService();
@@ -39,6 +58,9 @@ class IndexController extends BaseController
         $this->route('IndexController', 'index');
     }
 
+    /**
+     * @return void
+     */
     public function endWork() :void
     {
         $workService = new WorkService();
@@ -47,6 +69,9 @@ class IndexController extends BaseController
         $this->route('IndexController', 'index');
     }
 
+    /**
+     * @return void
+     */
     public function startBreak() :void
     {
         $workService = new WorkService();
@@ -55,6 +80,9 @@ class IndexController extends BaseController
         $this->route('IndexController', 'index');
     }
 
+    /**
+     * @return void
+     */
     public function endBreak() :void
     {
         $workService = new WorkService();

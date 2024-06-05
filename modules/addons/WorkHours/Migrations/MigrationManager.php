@@ -2,10 +2,21 @@
 
 namespace WorkHours\Migrations;
 
+/**
+ *
+ */
 class MigrationManager
 {
+    /**
+     * @var array
+     */
     protected array $migrations = [];
 
+    /**
+     * @param MigrationInterface $migration
+     * @param string $direction
+     * @return void
+     */
     public function addMigration(MigrationInterface $migration, string $direction) :void
     {
         $this->migrations[] = [
@@ -14,6 +25,9 @@ class MigrationManager
         ];
     }
 
+    /**
+     * @return void
+     */
     public function runMigrations() :void
     {
         foreach($this->migrations as $migration)

@@ -5,8 +5,14 @@ namespace WorkHours\Migrations\CreateTable;
 use WorkHours\Migrations\MigrationInterface;
 use WHMCS\Database\Capsule;
 
+/**
+ *
+ */
 class WorkSchedule implements MigrationInterface
 {
+    /**
+     * @return void
+     */
     public function up()
     {
         Capsule::schema()
@@ -22,6 +28,9 @@ class WorkSchedule implements MigrationInterface
             });
     }
 
+    /**
+     * @return void
+     */
     public function down()
     {
         Capsule::schema()

@@ -1,0 +1,40 @@
+@startuml
+
+!theme plain
+skinparam linetype ortho
+
+entity "tbladmins - WHMCS" {
+    * id : integer
+}
+
+entity "WorkSessions" {
+    * id : integer
+    * admin_id : integer unsigned
+    * start_time : datetime
+    * end_time : datetime nullable
+}
+
+entity "WorkSchedule" {
+    * id : integer
+    * admin_id : integer unsigned
+    * work_session_id : integer unsigned
+    * task_id : integer unsigned nullable
+    * start_time : datetime
+    * end_time : datetime nullable
+    * type : ['work', 'break']
+}
+
+entity "Tasks" {
+    * id : integer
+    * admin_id : integer unsigned
+    * name : string
+    * description: text
+}
+
+"tbladmins - WHMCS" ||--o{ WorkSessions
+"tbladmins - WHMCS" ||--o{ WorkSchedule
+"tbladmins - WHMCS" ||--o{ Tasks
+WorkSessions ||--o{ WorkSchedule
+WorkSchedule }o--|| Tasks
+
+@enduml
