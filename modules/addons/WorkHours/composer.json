@@ -11,5 +11,7 @@
             "WorkHours\\": "./"
         }
     },
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "^11.1"
+    }
 }

@@ -5,7 +5,6 @@ left to right direction
 skinparam linetype ortho
 
 actor "Admin" as admin
-actor "Super Admin" as superAdmin
 
 rectangle "WorkHours for WHMCS" {
     usecase "Rozpocznij sesję pracy" as startSession
@@ -14,7 +13,6 @@ rectangle "WorkHours for WHMCS" {
     usecase "Zakończ przerwę" as endBreak
     usecase "Dodaj nowe zadanie" as addTask
     usecase "Ustaw zadanie wykonywane aktualnie" as setTask
-    usecase "Generuj raport czasu pracy" as generateReport
 
     admin --> startSession
     admin --> endSession
@@ -22,10 +20,6 @@ rectangle "WorkHours for WHMCS" {
     admin --> endBreak
     admin --> addTask
     admin --> setTask
-
-    admin --> superAdmin
-
-    superAdmin --> generateReport
 }
 
 @enduml
