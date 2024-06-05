@@ -35,3 +35,9 @@ function WorkHours_output($params)
     $outputAction = new \WorkHours\Actions\Output($smarty, $params, $adminId);
     $outputAction->execute();
 }
+
+function WorkHours_sidebar($params)
+{
+    $sidebarAction = new \WorkHours\Actions\Sidebar($params);
+    return $sidebarAction->execute();
+}
