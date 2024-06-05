@@ -1,0 +1,125 @@
+@startuml
+
+!theme plain
+left to right direction
+skinparam linetype ortho
+
+class ActionInterface {
+   execute():
+}
+class Activate {
+   execute():
+}
+class BaseController {
+   route(controller, action):
+}
+class Config {
+   author:
+   name:
+   description:
+   language:
+   version:
+   execute():
+}
+class Deactivate {
+   execute():
+}
+class IndexController {
+   __construct(params, adminId):
+   adminId:
+   params:
+   endBreak():
+   startWork():
+   endWork():
+   startBreak():
+   index():
+}
+class MigrationDirection {
+   DOWN:
+   UP:
+}
+class MigrationInterface {
+   up():
+   down():
+}
+class MigrationManager {
+   migrations:
+   runMigrations():
+   addMigration(migration, direction):
+}
+class Output {
+   __construct(smarty, params, adminId):
+   adminId:
+   smarty:
+   params:
+   execute():
+}
+class Setting {
+   getSystemURL():
+}
+class Sidebar {
+   execute():
+}
+class Tasks {
+   fillable:
+   table:
+   primaryKey:
+}
+class Tasks {
+   up():
+   down():
+}
+class TasksController {
+   __construct(params, adminId):
+   adminId:
+   params:
+   runTask():
+   index():
+   addTask():
+}
+class WorkSchedule {
+   fillable:
+   table:
+   primaryKey:
+   endBreak(adminId, now):
+   isEmployeeCurrentlyAtBreak(adminId):
+   endLastTask(adminId, now):
+   startBreak(adminId, now):
+   startTask(adminId, workSessionId, taskId, now, type):
+}
+class WorkSchedule {
+   up():
+   down():
+}
+class WorkService {
+   endBreak(adminId):
+   startWork(adminId):
+   getCurrentRunTask(adminId):
+   stopWork(adminId):
+   runTask(adminId, taskId):
+   startBreak(adminId):
+}
+class WorkSessions {
+   fillable:
+   table:
+   primaryKey:
+   startWork(adminId, now):
+   endWork(adminId, now):
+   isEmployeeCurrentlyAtWork(adminId):
+}
+class WorkSessions {
+   up():
+   down():
+}
+
+Activate            -[#008200,dashed]-^  ActionInterface
+Config              -[#008200,dashed]-^  ActionInterface
+Deactivate          -[#008200,dashed]-^  ActionInterface
+IndexController     -[#000082,plain]-^  BaseController
+Output              -[#008200,dashed]-^  ActionInterface
+Sidebar             -[#008200,dashed]-^  ActionInterface
+Tasks               -[#008200,dashed]-^  MigrationInterface
+TasksController     -[#000082,plain]-^  BaseController
+WorkSchedule        -[#008200,dashed]-^  MigrationInterface
+WorkSessions        -[#008200,dashed]-^  MigrationInterface
+@enduml
